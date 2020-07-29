@@ -5,7 +5,7 @@
 				<Page title="{i18n>peoplePageTitle}">
 					<content>
 						<Table id="peopleList" growing="true" growingThreshold="10"
-							items="{ path: '/People', parameters: { $count: true, $$updateGroupId: 'peopleGroup' } }">
+							items="{ path: '/People', parameters: { $count: true, $$updateGroupId: 'peopleGroup' } }" mode="SingleSelectLeft">
 							<headerToolbar>
 								<OverflowToolbar>
 									<content>
@@ -13,6 +13,11 @@
 										<SearchField id="searchField" width="20%" placeholder="{i18n>searchFieldPlaceholder}" search=".onSearch"
 											enabled="{= !${appView>/hasUIChanges}}"/>
 										<Button id="addButton" icon="sap-icon://add" tooltip="{i18n>createButtonText}" press=".onCreate">
+											<layoutData>
+												<OverflowToolbarLayoutData priority="NeverOverflow"/>
+											</layoutData>
+										</Button>
+										<Button id="deleteButton" icon="sap-icon://delete" tooltip="{i18n>deleteButtonText}" press=".onDelete">
 											<layoutData>
 												<OverflowToolbarLayoutData priority="NeverOverflow"/>
 											</layoutData>
@@ -58,7 +63,7 @@
 						<Toolbar visible="{appView>/hasUIChanges}">
 							<ToolbarSpacer/>
 							<Button id="saveButton" type="Emphasized" text="{i18n>saveButtonText}" press=".onSave"
-							enabled="{= ${message>/}.length === 0 &amp;&amp; ${appView>/usernameEmpty} === false }"/>
+								enabled="{= ${message>/}.length === 0 &amp;&amp; ${appView>/usernameEmpty} === false }"/>
 							<Button id="cancelButton" text="{i18n>cancelButtonText}" press=".onCancel"/>
 						</Toolbar>
 					</footer>

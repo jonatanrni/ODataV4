@@ -145,6 +145,21 @@ sap.ui.define([
 
 		},
 
+		onDelete: function (oEvent) {
+			var oSelectedItem = this.byId("peopleList").getSelectedItem();
+
+			if (oSelectedItem) {
+				oSelectedItem.getBindingContext().delete("$auto").then(
+					function () {
+						MessageToast.show(this._getText("deletionSuccessMessage"));
+					}.bind(this),
+					function (oError) {
+						MessageBox.error(oError.message);
+					}
+				);
+			}
+		},
+
 		/**
 		 *  Private Functions
 		 */
